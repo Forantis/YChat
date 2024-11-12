@@ -49,3 +49,17 @@ export default tseslint.config({
 })
 ```
 # YChat
+
+## Objectifs MVC
+- Création de comptes users et connexion (nom, prenom, email, photo de profil, mot de passe)
+- Intégration d'un backend en CONVEX
+- Envois de messages entre users grâce à un uuid mais différent du nom user
+- Suivi des "messages lus" (date ou heure si moins de 24h)
+- Possibilité de créer des groupes de messages
+- envois de photos et messages vocaux
+
+
+## Objectifs Optionnels 
+
+- Gestions des "amis" et cacher le nom et la photo de profil si non amis 
+- Messages cryptés de bout en bout
