@@ -1,5 +1,10 @@
 # YChat
 
+## Methode
+- ESlint config Airbnb pour la continuité de code
+- camelCase pour le nom des variables
+- stylisation avec Sass --> methode BEM pour les classes
+
 ## Objectifs MVC
 - Création de comptes users et connexion (nom, prenom, email, photo de profil, mot de passe)
 - Utilisation du eslint config Airbnb
