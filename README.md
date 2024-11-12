@@ -52,6 +52,7 @@ export default tseslint.config({
 
 ## Objectifs MVC
 - Création de comptes users et connexion (nom, prenom, email, photo de profil, mot de passe)
+- Utilisation du eslint config Airbnb
 - Intégration d'un backend en CONVEX
 - Envois de messages entre users grâce à un uuid mais différent du nom user
 - Suivi des "messages lus" (date ou heure si moins de 24h)
