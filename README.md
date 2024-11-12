@@ -64,3 +64,4 @@ export default tseslint.config({
 
 - Gestions des "amis" et cacher le nom et la photo de profil si non amis 
 - Messages cryptés de bout en bout
+- version mobile
