@@ -64,4 +64,12 @@ export default tseslint.config({
 
 - Gestions des "amis" et cacher le nom et la photo de profil si non amis 
 - Messages cryptés de bout en bout
+- systeme de recherche des discussion en utilisant le nom du destinataire 
 - version mobile
+- systeme de "contacts favoris"
+
+## Etapes 
+- Maquettes
+- Init et config du projet: react, convex, eslint, prettier
+- MCD BDD
+
