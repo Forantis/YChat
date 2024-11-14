@@ -12,8 +12,7 @@ export default defineSchema({
         email: v.string(),
         password: v.string(),
         created_at: v.string(),
-    }).index("by_token", ["tokenIdentifier"]),
-
+    }),
     messages: defineTable({
         sender_id: v.number(),
         body: v.string(),

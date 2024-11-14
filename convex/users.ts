@@ -1,35 +1,29 @@
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
 
-/* export const store = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) {
-      throw new Error("Called storeUser without authentication present");
-    }
 
-    // Check if we've already stored this identity before.
-    // Note: If you don't want to define an index right away, you can use
-    // ctx.db.query("users")
-    //  .filter(q => q.eq(q.field("tokenIdentifier"), identity.tokenIdentifier))
-    //  .unique();
-    const user = await ctx.db
-      .query("users")
-      .withIndex("by_token", (q) =>
-        q.eq("tokenIdentifier", identity.tokenIdentifier),
-      )
-      .unique();
-    if (user !== null) {
-      // If we've seen this identity before but the name has changed, patch the value.
-      if (user.name !== identity.name) {
-        await ctx.db.patch(user._id, { name: identity.name });
-      }
-      return user._id;
-    }
-    // If it's a new identity, create a new `User`.
-    return await ctx.db.insert("users", {
-      name: identity.name ?? "Anonymous",
-      tokenIdentifier: identity.tokenIdentifier,
-    });
-  },
-}); */
+export const authentication = mutation({
+    args: {email: v.string(), password: v.string()},
+    handler: async (ctx, args) => {
+        return await ctx.db.query("users")
+        .filter((q) => q.eq(q.field("email"), args.email))
+        .filter((q) => q.eq(q.field("password"), args.password))
+        .collect();
+    },
+});
+
+export const register = mutation({
+    args: {public_uuid: v.number(), email: v.string(), password: v.string(), name: v.string(), surname: v.string(), role: v.string(), tokenIdentifier: v.string(), created_at: v.string()},
+    handler: async (ctx, args) => {
+        await ctx.db.insert("users", {
+            public_uuid: args.public_uuid,
+            email: args.email,
+            password: args.password,
+            name: args.name,
+            surname: args.surname,
+            role: args.role,
+            tokenIdentifier: args.tokenIdentifier,
+            created_at: args.created_at,
+        });
+    },
+});
