@@ -8,11 +8,12 @@ export default defineSchema({
         public_uuid: v.integer().unique(),
         name: v.string(),
         surname: v.string(),
+        tokenIdentifier: v.string(),
         role: v.string(),
         email: v.string().unique(),
         password: v.string(),
         created_at: v.timestamp(),
-    }),
+    })index("by_token", ["tokenIdentifier"]),
     messages: defineTable({
         id: v.id("messages"),
         sender_id: v.integer(),
