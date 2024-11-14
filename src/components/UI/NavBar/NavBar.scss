@@ -1,4 +1,6 @@
 .navbar {
+    display: flex;
+    flex-direction: column;
     background-color: #333;
     overflow: hidden;
     position: relative;
@@ -24,4 +26,10 @@
 .navbar a.active {
     background-color: #4CAF50;
     color: blue;
+}
+
+.image_logo {
+    width: 75px;
+    height: 75px;
+    margin-top: 1rem;
 }

@@ -10,7 +10,7 @@ const LandingPage: React.FC = () => {
                 <img src="./images/Image_LP.png" alt="YChat logo" className="images_LP">
                 </img> 
             </div>  
-            <div className="landing-page">
+            <div className="landing-page__titre">
                 <h1>Bienvenue sur YChat</h1>
                 <p>Connectez-vous avec vos amis et votre famille.</p>
                 <Button onClick={() => console.log('Inscription button clicked')}>Inscription</Button>
