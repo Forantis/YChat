@@ -22,11 +22,11 @@ const SignUpModal: React.FC = () => {
                     <form>
                         <div>
                             <label htmlFor="username">Email :</label>
-                            <input type="email" id="email" name="email" required />
+                            <input type="email" id="emailSignUp" name="email" required />
                         </div>
                         <div>
                             <label htmlFor="password">Mot de passe :</label>
-                            <input type="password" id="password" name="password" required />
+                            <input type="password" id="passwordSignUp" name="password" required />
                         </div>
                     </form>
                 </ModalBody>
