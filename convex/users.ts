@@ -1,6 +1,6 @@
 import { mutation } from "./_generated/server";
 
-export const store = mutation({
+/* export const store = mutation({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -32,4 +32,4 @@ export const store = mutation({
       tokenIdentifier: identity.tokenIdentifier,
     });
   },
-});
+}); */

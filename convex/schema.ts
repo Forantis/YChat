@@ -4,26 +4,32 @@ import { v } from "convex/values";
 // Définition des schémas de la base de données
 export default defineSchema({
     users: defineTable({
-        id: v.id("users"),
-        public_uuid: v.integer().unique(),
+        public_uuid: v.number(),
         name: v.string(),
         surname: v.string(),
         tokenIdentifier: v.string(),
         role: v.string(),
-        email: v.string().unique(),
+        email: v.string(),
         password: v.string(),
-        created_at: v.timestamp(),
-    })index("by_token", ["tokenIdentifier"]),
+        created_at: v.string(),
+    }).index("by_token", ["tokenIdentifier"]),
+
     messages: defineTable({
-        id: v.id("messages"),
-        sender_id: v.integer(),
+        sender_id: v.number(),
         body: v.string(),
-        user_id: v.integer(),
-        read_status: v.timestamp(),
-        created_at: v.timestamp(),
+        user_id: v.number(),
+        read_status: v.string(),
+        created_at: v.string(),
     }),
     sentTo: defineTable({
-        message_id: v.integer(),
-        receveir_id: v.integer(),
-    }).index(["message_id", "receveir_id"], { unique: true }),
+        message_id: v.number(),
+        receveir_id: v.number(),
+    }).index("message_id", ["receveir_id"]),
 });
+
+/*v.id("documents"),
+    string: v.string(),
+    number: v.number(),
+    boolean: v.boolean(),
+    nestedObject: v.object({
+      property: v.string(),*/
