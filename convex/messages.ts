@@ -1,4 +1,6 @@
 import { query } from "./_generated/server";
+import { v } from "convex/values";
+
 
 export const get = query({
   args: {},
@@ -8,10 +10,10 @@ export const get = query({
 });
 
 export const getBySenderId =query({
-  args: {},
-  handler: async (ctx) => {
+  args: { sender_id: v.number() },
+  handler: async (ctx, args) => {
     return await ctx.db.query("messages")
-    .filter((q) => q.eq(q.field("sender_id"), 6))
+    .filter((q) => q.eq(q.field("sender_id"), args.sender_id))
     .collect();
   },
 });
