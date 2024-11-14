@@ -1,6 +1,7 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
+// Définition des schémas de la base de données
 export default defineSchema({
     users: defineTable({
         id: v.id("users"),
