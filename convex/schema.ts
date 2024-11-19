@@ -1,7 +1,7 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
-// Définition des schémas de la base de données
+// Database schema definition
 export default defineSchema({
     users: defineTable({
         public_uuid: v.number(),
@@ -16,13 +16,19 @@ export default defineSchema({
     messages: defineTable({
         sender_id: v.number(),
         body: v.string(),
-        user_id: v.number(),
+        conversation_public_uuid: v.number(), //To whom the message is sent
         read_status: v.string(),
         created_at: v.string(),
     }),
+    conversations: defineTable({
+        conversation_name: v.string(),
+        conversation_public_uuid: v.number(),
+        last_update: v.string(),
+
+    }),
     sentTo: defineTable({
         message_id: v.number(),
-        receveir_id: v.number(),
+        conversation_id: v.number(),
     }).index("message_id", ["receveir_id"]),
 });
 
