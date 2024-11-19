@@ -26,10 +26,10 @@ export default defineSchema({
         last_update: v.string(),
 
     }),
-    sentTo: defineTable({
-        message_id: v.number(),
+    usersInConversations: defineTable({
+        user_id: v.number(),
         conversation_id: v.number(),
-    }).index("message_id", ["receveir_id"]),
+    }).index("user_id", ["conversation_id"]),
 });
 
 /*v.id("documents"),
