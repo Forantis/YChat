@@ -1,7 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
-
+// Log In Function
 export const authentication = mutation({
     args: {email: v.string(), password: v.string()},
     handler: async (ctx, args) => {
@@ -12,6 +12,7 @@ export const authentication = mutation({
     },
 });
 
+// Sign In Function
 export const register = mutation({
     args: {public_uuid: v.number(), email: v.string(), password: v.string(), name: v.string(), surname: v.string(), role: v.string(), tokenIdentifier: v.string(), created_at: v.string()},
     handler: async (ctx, args) => {
