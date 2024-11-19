@@ -1,3 +1,23 @@
+{"sender_id": 1, "body": "Hello, how are you?", "conversation_public_uuid": 1, "read_status": "2023-10-01T12:05:00Z", "created_at": "2023-10-01T12:00:00Z"}
+{"sender_id": 2, "body": "I'm good, thanks!", "conversation_public_uuid": 2,"read_status": "2023-10-02T12:05:00Z", "created_at": "2023-10-02T12:00:00Z"}
+{"sender_id": 3, "body": "Hi everyone!", "conversation_public_uuid": 3,"read_status": "2023-10-03T12:05:00Z", "created_at": "2023-10-03T12:00:00Z"}
+{"sender_id": 4, "body": "Hello Alice!", "conversation_public_uuid": 4, "read_status": "2023-10-04T12:05:00Z", "created_at": "2023-10-04T12:00:00Z"}
+{"sender_id": 5, "body": "Good morning!", "conversation_public_uuid": 4, "read_status": "2023-10-05T12:05:00Z", "created_at": "2023-10-05T12:00:00Z"}
+{"sender_id": 6, "body": "Good morning, Charlie!", "conversation_public_uuid": 4, "read_status": "2023-10-06T12:05:00Z", "created_at": "2023-10-06T12:00:00Z"}
+{"sender_id": 7, "body": "Hey there!", "conversation_public_uuid": 4, "read_status": "2023-10-07T12:05:00Z", "created_at": "2023-10-07T12:00:00Z"}
+{"sender_id": 1, "body": "Hi Eve!", "conversation_public_uuid": 4, "read_status": "2023-10-01T12:10:00Z", "created_at": "2023-10-01T12:00:00Z"}
+{"sender_id": 2, "body": "How's it going?", "conversation_public_uuid": 4, "read_status": "2023-10-02T12:10:00Z", "created_at": "2023-10-02T12:00:00Z"}
+{"sender_id": 3, "body": "All good here!", "conversation_public_uuid": 4, "read_status": "2023-10-03T12:10:00Z", "created_at": "2023-10-03T12:00:00Z"}
+{"sender_id": 4, "body": "What's up?", "conversation_public_uuid": 4, "read_status": "2023-10-04T12:10:00Z", "created_at": "2023-10-04T12:00:00Z"}
+{"sender_id": 5, "body": "Not much, you?", "conversation_public_uuid": 4, "read_status": "2023-10-05T12:10:00Z", "created_at": "2023-10-05T12:00:00Z"}
+{"sender_id": 6, "body": "Just working.", "conversation_public_uuid": 4, "read_status": "2023-10-06T12:10:00Z", "created_at": "2023-10-06T12:00:00Z"}
+{"sender_id": 7, "body": "Same here.", "conversation_public_uuid": 4, "read_status": "2023-10-07T12:10:00Z", "created_at": "2023-10-07T12:00:00Z"}
+{"sender_id": 1, "body": "Let's catch up later.", "conversation_public_uuid": 4, "read_status": "2023-10-01T12:15:00Z", "created_at": "2023-10-01T12:00:00Z"}
+{"sender_id": 2, "body": "Sure thing!", "conversation_public_uuid": 4, "read_status": "2023-10-02T12:15:00Z", "created_at": "2023-10-02T12:00:00Z"}
+{"sender_id": 3, "body": "See you later.", "conversation_public_uuid": 4, "read_status": "2023-10-03T12:15:00Z", "created_at": "2023-10-03T12:00:00Z"}
+{"sender_id": 4, "body": "Bye!", "conversation_public_uuid": 4, "read_status": "2023-10-04T12:15:00Z", "created_at": "2023-10-04T12:00:00Z"}
+{"sender_id": 5, "body": "Take care.", "conversation_public_uuid": 4, "read_status": "2023-10-05T12:15:00Z", "created_at": "2023-10-05T12:00:00Z"}
+{"sender_id": 6, "body": "You too.", "conversation_public_uuid": 4, "read_status": "2023-10-06T12:15:00Z", "created_at": "2023-10-06T12:00:00Z"}
 {"public_uuid": 12345, "name": "John", "surname": "Doe", "tokenIdentifier": "token123", "role": "admin", "email": "john.doe@example.com", "password": "password123", "created_at": "2023-10-01T12:00:00Z"}
 {"public_uuid": 67890, "name": "Jane", "surname": "Smith", "tokenIdentifier": "token456", "role": "user", "email": "jane.smith@example.com", "password": "password456", "created_at": "2023-10-02T12:00:00Z"}
 {"public_uuid": 11111, "name": "Alice", "surname": "Johnson", "tokenIdentifier": "token789", "role": "user", "email": "alice.johnson@example.com", "password": "password789", "created_at": "2023-10-03T12:00:00Z"}
@@ -5,43 +25,3 @@
 {"public_uuid": 33333, "name": "Charlie", "surname": "Davis", "tokenIdentifier": "token345", "role": "user", "email": "charlie.davis@example.com", "password": "password345", "created_at": "2023-10-05T12:00:00Z"}
 {"public_uuid": 44444, "name": "Diana", "surname": "Evans", "tokenIdentifier": "token678", "role": "user", "email": "diana.evans@example.com", "password": "password678", "created_at": "2023-10-06T12:00:00Z"}
 {"public_uuid": 55555, "name": "Eve", "surname": "Foster", "tokenIdentifier": "token901", "role": "user", "email": "eve.foster@example.com", "password": "password901", "created_at": "2023-10-07T12:00:00Z"}
-{"sender_id": 1, "body": "Hello, how are you?", "user_id": 2, "read_status": "2023-10-01T12:05:00Z", "created_at": "2023-10-01T12:00:00Z"}
-{"sender_id": 2, "body": "I'm good, thanks!", "user_id": 1, "read_status": "2023-10-02T12:05:00Z", "created_at": "2023-10-02T12:00:00Z"}
-{"sender_id": 3, "body": "Hi everyone!", "user_id": 4, "read_status": "2023-10-03T12:05:00Z", "created_at": "2023-10-03T12:00:00Z"}
-{"sender_id": 4, "body": "Hello Alice!", "user_id": 3, "read_status": "2023-10-04T12:05:00Z", "created_at": "2023-10-04T12:00:00Z"}
-{"sender_id": 5, "body": "Good morning!", "user_id": 6, "read_status": "2023-10-05T12:05:00Z", "created_at": "2023-10-05T12:00:00Z"}
-{"sender_id": 6, "body": "Good morning, Charlie!", "user_id": 5, "read_status": "2023-10-06T12:05:00Z", "created_at": "2023-10-06T12:00:00Z"}
-{"sender_id": 7, "body": "Hey there!", "user_id": 1, "read_status": "2023-10-07T12:05:00Z", "created_at": "2023-10-07T12:00:00Z"}
-{"sender_id": 1, "body": "Hi Eve!", "user_id": 7, "read_status": "2023-10-01T12:10:00Z", "created_at": "2023-10-01T12:00:00Z"}
-{"sender_id": 2, "body": "How's it going?", "user_id": 3, "read_status": "2023-10-02T12:10:00Z", "created_at": "2023-10-02T12:00:00Z"}
-{"sender_id": 3, "body": "All good here!", "user_id": 2, "read_status": "2023-10-03T12:10:00Z", "created_at": "2023-10-03T12:00:00Z"}
-{"sender_id": 4, "body": "What's up?", "user_id": 5, "read_status": "2023-10-04T12:10:00Z", "created_at": "2023-10-04T12:00:00Z"}
-{"sender_id": 5, "body": "Not much, you?", "user_id": 4, "read_status": "2023-10-05T12:10:00Z", "created_at": "2023-10-05T12:00:00Z"}
-{"sender_id": 6, "body": "Just working.", "user_id": 7, "read_status": "2023-10-06T12:10:00Z", "created_at": "2023-10-06T12:00:00Z"}
-{"sender_id": 7, "body": "Same here.", "user_id": 6, "read_status": "2023-10-07T12:10:00Z", "created_at": "2023-10-07T12:00:00Z"}
-{"sender_id": 1, "body": "Let's catch up later.", "user_id": 2, "read_status": "2023-10-01T12:15:00Z", "created_at": "2023-10-01T12:00:00Z"}
-{"sender_id": 2, "body": "Sure thing!", "user_id": 1, "read_status": "2023-10-02T12:15:00Z", "created_at": "2023-10-02T12:00:00Z"}
-{"sender_id": 3, "body": "See you later.", "user_id": 4, "read_status": "2023-10-03T12:15:00Z", "created_at": "2023-10-03T12:00:00Z"}
-{"sender_id": 4, "body": "Bye!", "user_id": 3, "read_status": "2023-10-04T12:15:00Z", "created_at": "2023-10-04T12:00:00Z"}
-{"sender_id": 5, "body": "Take care.", "user_id": 6, "read_status": "2023-10-05T12:15:00Z", "created_at": "2023-10-05T12:00:00Z"}
-{"sender_id": 6, "body": "You too.", "user_id": 5, "read_status": "2023-10-06T12:15:00Z", "created_at": "2023-10-06T12:00:00Z"}
-{"message_id": 1, "receveir_id": 2}
-{"message_id": 2, "receveir_id": 1}
-{"message_id": 3, "receveir_id": 4}
-{"message_id": 4, "receveir_id": 3}
-{"message_id": 5, "receveir_id": 6}
-{"message_id": 6, "receveir_id": 5}
-{"message_id": 7, "receveir_id": 1}
-{"message_id": 8, "receveir_id": 7}
-{"message_id": 9, "receveir_id": 3}
-{"message_id": 10, "receveir_id": 2}
-{"message_id": 11, "receveir_id": 5}
-{"message_id": 12, "receveir_id": 4}
-{"message_id": 13, "receveir_id": 7}
-{"message_id": 14, "receveir_id": 6}
-{"message_id": 15, "receveir_id": 2}
-{"message_id": 16, "receveir_id": 1}
-{"message_id": 17, "receveir_id": 4}
-{"message_id": 18, "receveir_id": 3}
-{"message_id": 19, "receveir_id": 6}
-{"message_id": 20, "receveir_id": 5}
