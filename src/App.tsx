@@ -90,7 +90,7 @@ function App() {
       <section id="getMessagesByConversationIdTest">
         <h2>get Messages By Conversation Id Test</h2>
         <div>
-          {messagesByConversationId?.map(({ _id, body }) => <div key={_id}>{body}</div>)}
+          {messagesByConversationId?.map(({ _id, body, sender_id }) => <div key={_id} className={sender_id === user_id? "right" : "left"}>{body}</div>)}
         </div>
       </section>
     </div>
