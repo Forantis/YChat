@@ -17,7 +17,7 @@ function App() {
 
   const messages = useQuery(api.messages.getBySenderId, { sender_id: sender });
   const registerTest = useMutation(api.users.register);
-  const conversationsByUserId = useQuery(api.conversations.getConversationsByUserId, { user_id });
+  const conversationsByUserId = useQuery(api.conversations.getConversationsNameByUserId, { user_id });
 
   function handleRegister() {
     const date = new Date().toISOString();
@@ -74,11 +74,12 @@ function App() {
             role });
         }}
       > Login Test</button>
+
       <section id="getConversationsByUserIdTest">
         <h2>get Conversations By User Id Test</h2>
         <input type="number" value={user_id} onChange={(e) => setUser_id(parseInt(e.target.value))} />
         <div>
-          {conversationsByUserId?.map(({ _id, conversation_id }) => <div key={_id}>{conversation_id}</div>)}
+          {conversationsByUserId?.map(({ _id, conversation_name }) => <div key={_id}>{conversation_name}</div>)}
         </div>
       </section>
     </div>
