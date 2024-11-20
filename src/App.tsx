@@ -14,8 +14,9 @@ function App() {
   const [public_uuid, setPublic_uuid] = useState(0);
   const [role, setRole] = useState("");
   const [user_id, setUser_id] = useState(0);
+  const [conversation_id, setConversation_id] = useState(0);
 
-  const messages = useQuery(api.messages.getBySenderId, { sender_id: sender });
+  const messagesByConversationId = useQuery(api.messages.getByConversationId, { conversation_id: conversation_id });
   const registerTest = useMutation(api.users.register);
   const conversationsByUserId = useQuery(api.conversations.getConversationsNameByUserId, { user_id });
 
@@ -29,7 +30,6 @@ function App() {
 
   return (
     <div className="App">
-      {messages?.map(({ _id, body }) => <div key={_id}>{body}</div>)}
       <input
         type="number"
         value={sender}
@@ -79,7 +79,18 @@ function App() {
         <h2>get Conversations By User Id Test</h2>
         <input type="number" value={user_id} onChange={(e) => setUser_id(parseInt(e.target.value))} />
         <div>
-          {conversationsByUserId?.map(({ _id, conversation_name }) => <div key={_id}>{conversation_name}</div>)}
+          {conversationsByUserId?.map(({ _id, conversation_name, conversation_public_uuid }) => <button key={_id} value={conversation_public_uuid} onClick={
+            async (e) => {
+              setConversation_id(parseInt(e.currentTarget.value));
+            }
+          }>{conversation_name}</button>)}
+        </div>
+      </section>
+
+      <section id="getMessagesByConversationIdTest">
+        <h2>get Messages By Conversation Id Test</h2>
+        <div>
+          {messagesByConversationId?.map(({ _id, body }) => <div key={_id}>{body}</div>)}
         </div>
       </section>
     </div>
