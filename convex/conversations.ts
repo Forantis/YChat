@@ -21,7 +21,9 @@ export const getConversationByConversationId = query({
   },
 });
 
-// function that get conversation id where the user is in and use it to get the conversation name
+// ---------------------------------------------------
+// Get all conversation names in which the user is involved
+// ---------------------------------------------------
 export const getConversationsNameByUserId = query({
   args: { user_id: v.number() },
   handler: async (ctx, args) => {
