@@ -31,10 +31,3 @@ export default defineSchema({
         conversation_id: v.number(),
     }).index("user_id", ["conversation_id"]),
 });
-
-/*v.id("documents"),
-    string: v.string(),
-    number: v.number(),
-    boolean: v.boolean(),
-    nestedObject: v.object({
-      property: v.string(),*/
