@@ -1,7 +1,7 @@
 import NavBar from './components/UI/NavBar/NavBar'
 import LandingPage from './components/LandingPage/LandingPage'
 import Footer from './components/UI/Footer/Footer'
-import "./App.css";
+import "./App.scss";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useState } from "react";
@@ -30,8 +30,6 @@ function App() {
     setPublic_uuid(Math.floor(Math.random() * 1000000000));
     setRole("user");
   }
-
-function App() {
   // Rendu de l'application
   return (
 // codePage
