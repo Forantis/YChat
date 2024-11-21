@@ -1,0 +1,10 @@
+{"sender_id": 1, "body": "Has everyone reviewed the latest project specs?", "conversation_public_uuid": 101, "read_status": "read", "created_at": "2024-03-15T10:15:00Z"}
+{"sender_id": 2, "body": "Yes, I've added my comments to the document", "conversation_public_uuid": 101, "read_status": "read", "created_at": "2024-03-15T10:30:00Z"}
+{"sender_id": 1, "body": "New marketing campaign draft is ready", "conversation_public_uuid": 102, "read_status": "unread", "created_at": "2024-03-15T11:45:00Z"}
+{"sender_id": 3, "body": "Customer reported issue #123 needs attention", "conversation_public_uuid": 103, "read_status": "read", "created_at": "2024-03-15T09:00:00Z"}
+{"sender_id": 2, "body": "I'll look into it right away", "conversation_public_uuid": 103, "read_status": "read", "created_at": "2024-03-15T09:15:00Z"}
+{"sender_id": 4, "body": "New design mockups are ready for review", "conversation_public_uuid": 104, "read_status": "unread", "created_at": "2024-03-15T14:20:00Z"}
+{"sender_id": 5, "body": "These look great!", "conversation_public_uuid": 104, "read_status": "read", "created_at": "2024-03-15T14:25:00Z"}
+{"sender_id": 1, "body": "Team meeting tomorrow at 10 AM", "conversation_public_uuid": 105, "read_status": "read", "created_at": "2024-03-15T16:00:00Z"}
+{"sender_id": 3, "body": "I'll be there", "conversation_public_uuid": 105, "read_status": "unread", "created_at": "2024-03-15T16:05:00Z"}
+{"sender_id": 4, "body": "Sounds good", "conversation_public_uuid": 105, "read_status": "unread", "created_at": "2024-03-15T16:10:00Z"}

@@ -1,5 +1,11 @@
 # YChat
 
+## Oral 
+Passage à 14h20 --> 10 min d'oral et 5 min de question
+Présentation du projet, démonstration et retour professionel 
+
+Prez perso, roles + contexte > Technos, methodo du projet (schema de bdd etc) > Demo préparée (inscription/connexion, envois de message, création de groupe) > Expliquer les difficultés, limites du projet, apprentissage > conclusion (comment ça s'est passé personnellement, avis perso)
+
 ## Methode
 - ESlint config Airbnb pour la continuité de code
 - camelCase pour le nom des variables
