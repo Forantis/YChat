@@ -1,10 +1,15 @@
-import NavBar from './components/UI/NavBar/NavBar'
-import LandingPage from './components/LandingPage/LandingPage'
-import Footer from './components/UI/Footer/Footer'
-import "./App.scss";
+
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useState } from "react";
+import "./App.scss";
+import NavBar from './components/UI/NavBar/NavBar'
+import LandingPage from './components/LandingPage/LandingPage'
+import Footer from './components/UI/Footer/Footer'
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+import AppContent from './components/MainApp/MainApp';
+import MainApp from './components/MainApp/MainApp';
 
 function App() {
   const [sender, setSender] = useState(0);
@@ -32,6 +37,88 @@ function App() {
   }
   // Rendu de l'application
   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route 
+          path="/app" 
+          element={
+            <ProtectedRoute>
+              <MainApp />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path='/test' 
+        element={
+          <div className="App">
+            <input
+              type="number"
+              value={sender}
+              onChange={(e) => setSender(parseInt(e.target.value))}
+            />
+            <input
+              type="text"
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input 
+            type="text" 
+            placeholder="name" 
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            />
+            <input
+            type="text"
+            placeholder="surname"
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
+            />
+
+            <button
+              onClick={async () => {
+                handleRegister();
+                await registerTest({ 
+                  email, 
+                  password, 
+                  name, 
+                  surname, 
+                  created_at, 
+                  tokenIdentifier, 
+                  public_uuid, 
+                  role });
+              }}
+            > Login Test</button>
+
+            <section id="getConversationsByUserIdTest">
+              <h2>get Conversations By User Id Test</h2>
+              <input type="number" value={user_id} onChange={(e) => setUser_id(parseInt(e.target.value))} />
+              <div>
+                {conversationsByUserId?.map(({ _id, conversation_name, conversation_public_uuid }) => <button key={_id} value={conversation_public_uuid} onClick={
+                  async (e) => {
+                    setConversation_id(parseInt(e.currentTarget.value));
+                  }
+                }>{conversation_name}</button>)}
+              </div>
+            </section>
+
+            <section id="getMessagesByConversationIdTest">
+              <h2>get Messages By Conversation Id Test</h2>
+              <div>
+                {messagesByConversationId?.map(({ _id, body, sender_id }) => <div key={_id} className={sender_id === user_id? "right" : "left"}>{body}</div>)}
+              </div>
+            </section>
+          </div>
+        } />
+      </Routes>
+    </BrowserRouter>
+
 // codePage
     /*
     <>
@@ -41,71 +128,7 @@ function App() {
     </>
   ) */
     
-    <div className="App">
-      <input
-        type="number"
-        value={sender}
-        onChange={(e) => setSender(parseInt(e.target.value))}
-      />
-      <input
-        type="text"
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input 
-      type="text" 
-      placeholder="name" 
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-      />
-      <input
-      type="text"
-      placeholder="surname"
-      value={surname}
-      onChange={(e) => setSurname(e.target.value)}
-      />
-
-      <button
-        onClick={async () => {
-          handleRegister();
-          await registerTest({ 
-            email, 
-            password, 
-            name, 
-            surname, 
-            created_at, 
-            tokenIdentifier, 
-            public_uuid, 
-            role });
-        }}
-      > Login Test</button>
-
-      <section id="getConversationsByUserIdTest">
-        <h2>get Conversations By User Id Test</h2>
-        <input type="number" value={user_id} onChange={(e) => setUser_id(parseInt(e.target.value))} />
-        <div>
-          {conversationsByUserId?.map(({ _id, conversation_name, conversation_public_uuid }) => <button key={_id} value={conversation_public_uuid} onClick={
-            async (e) => {
-              setConversation_id(parseInt(e.currentTarget.value));
-            }
-          }>{conversation_name}</button>)}
-        </div>
-      </section>
-
-      <section id="getMessagesByConversationIdTest">
-        <h2>get Messages By Conversation Id Test</h2>
-        <div>
-          {messagesByConversationId?.map(({ _id, body, sender_id }) => <div key={_id} className={sender_id === user_id? "right" : "left"}>{body}</div>)}
-        </div>
-      </section>
-    </div>
+    
   );
 }
 
