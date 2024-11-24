@@ -8,7 +8,6 @@ import NavBar from './components/UI/NavBar/NavBar'
 import LandingPage from './components/LandingPage/LandingPage'
 import Footer from './components/UI/Footer/Footer'
 import ProtectedRoute from './components/Auth/ProtectedRoute';
-import AppContent from './components/MainApp/MainApp';
 import MainApp from './components/MainApp/MainApp';
 
 function App() {
