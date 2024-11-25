@@ -1,16 +1,8 @@
-
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import React, { useState } from "react";
+import { api } from "../../../convex/_generated/api";
 import { useQuery, useMutation } from "convex/react";
-import { api } from "../convex/_generated/api";
-import { useState } from "react";
-import "./App.scss";
-import NavBar from './components/UI/NavBar/NavBar'
-import LandingPage from './components/LandingPage/LandingPage'
-import Footer from './components/UI/Footer/Footer'
-import ProtectedRoute from './components/Auth/ProtectedRoute';
-import MainApp from './components/MainApp/MainApp';
 
-function App() {
+export default function MainApp(){
   const [sender, setSender] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,22 +26,9 @@ function App() {
     setPublic_uuid(Math.floor(Math.random() * 1000000000));
     setRole("user");
   }
-  // Rendu de l'application
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route 
-          path="/app" 
-          element={
-            //<ProtectedRoute>
-              <MainApp />
-            //</ProtectedRoute>
-          } 
-        />
-        <Route path='/test' 
-        element={
-          <div className="App">
+    <div className="App">
             <input
               type="number"
               value={sender}
@@ -114,22 +93,5 @@ function App() {
               </div>
             </section>
           </div>
-        } />
-      </Routes>
-    </BrowserRouter>
-
-// codePage
-    /*
-    <>
-      <NavBar />
-      <LandingPage />
-      <Footer />
-    </>
-  ) */
-    
-    
   );
 }
-
-export default App;
-
