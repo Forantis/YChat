@@ -33,7 +33,7 @@ export default function MainApp(){
   return (
     <div className="App">
      <ConversationsList 
-     conversations={conversationsByUserId} 
+     conversations={conversationsByUserId}
      selectedConversation={selectedConversation} 
      setSelectedConversation={setSelectedConversation} />
       <MessagesList messages={messagesByConversationId} user_id={user_id} />
