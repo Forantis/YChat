@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { api } from "../../../convex/_generated/api";
 import { useQuery, useMutation } from "convex/react";
 
 export default function MainApp(){
