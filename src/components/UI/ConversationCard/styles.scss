@@ -1,12 +1,13 @@
 .conversation-card {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 0 1rem;
   border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
   transition: background-color 0.2s;
-  width: 336px;
+  width: calc(336px - 2rem);
   height: 76px;
+  border-radius: 8px;
   background-color: #F5FAFC;
   color: #09132C;
 
