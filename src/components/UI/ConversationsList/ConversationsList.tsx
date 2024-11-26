@@ -17,6 +17,7 @@ export default function ConversationsList({ conversations, setSelectedConversati
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+
     if (conversations && conversations.length > 0) {
       setIsLoading(false);
     }
