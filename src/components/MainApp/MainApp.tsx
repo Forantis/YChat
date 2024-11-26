@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useQuery, useMutation } from "convex/react";
-import ConversationsList from "../UI/ConversationsList/ConversationsList";
 import MessagesList from "../UI/MessagesList/MessagesList";
+import LeftContainer from "../UI/LeftContainer/LeftContainer";
 
 export default function MainApp(){
   const [sender, setSender] = useState(0);
@@ -32,7 +32,7 @@ export default function MainApp(){
 
   return (
     <div className="App">
-     <ConversationsList 
+     <LeftContainer 
      conversations={conversationsByUserId}
      selectedConversation={selectedConversation} 
      setSelectedConversation={setSelectedConversation} />
