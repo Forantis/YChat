@@ -23,7 +23,7 @@ export default function MessagesList({ messages, user_id }: MessagesListProps) {
   }, [messages]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><img src="/images/logo.png" alt="YChat logo" /></div>;
   }
 
   return (
