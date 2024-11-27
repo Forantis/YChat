@@ -1,0 +1,14 @@
+.messages-list {
+  display: flex;
+  flex-direction:column-reverse;
+  height: calc(100vh - 50px);
+  width: calc(100vw - 80px - 360px);
+  overflow-y: auto;
+  padding: 0 40px 50px 40px;
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #FAFAFA;
+}
