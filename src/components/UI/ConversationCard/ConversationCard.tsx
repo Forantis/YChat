@@ -24,7 +24,7 @@ export default function ConversationCard({ conversation, setSelectedConversation
   const timeDifference = now.getTime() - lastUpdateDate.getTime();
   const oneDay = 24 * 60 * 60 * 1000;
   if (timeDifference < oneDay) {
-    shownDateOrTime = lastUpdateDate.toLocaleTimeString();
+    shownDateOrTime = lastUpdateDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   } else if (timeDifference < 2 * oneDay) {
     shownDateOrTime = 'yesterday';
   } else {
