@@ -15,17 +15,27 @@
     background-color: #f5f5f5;
   }
 
-  .conversation-card__title {
-    font-weight:500;
-    font-size: 16px;
-    line-height: 24px;
-  }
+  &__content{
+    text-align: left;
+    
+    &__title {
+      font-weight:500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  
+    &__last-message {
+      font-weight: regular;
+      font-size: 12px;
+      line-height: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 180px; // Adjust the width as needed
+    }
 
-  .conversation-card__last-message {
-    font-weight: regular;
-    font-size: 12px;
-    line-height: 16px;
   }
+  
 
   .conversation-card__time {
     color: #999;

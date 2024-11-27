@@ -29,3 +29,13 @@ export const getByConversationId = query({
     .collect();
   },
 });
+
+export const getLastMessageByConversationId = query({
+  args: { conversation_id: v.number() },
+  handler: async (ctx, args) => {
+    return await ctx.db.query("messages")
+    .filter((q) => q.eq(q.field("conversation_public_uuid"), args.conversation_id))
+    .order("desc")
+    .take(1);
+  },
+});
