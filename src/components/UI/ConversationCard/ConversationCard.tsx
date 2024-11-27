@@ -40,8 +40,8 @@ export default function ConversationCard({ conversation, setSelectedConversation
       </div>
       <div className='conversation-card__infos'>
       <p className="conversation-card__infos__last-update">{shownDateOrTime}</p>
-      {readStatus === 'read' ? <p className="conversation-card__infos__read-status">Read</p> 
-      : <p className="conversation-card__infos__read-status"> Unread</p>}
+      {readStatus === 'read' ? <p className="conversation-card__infos__read-status">Readed</p> 
+      : <p className="conversation-card__infos__read-status"> Unreaded</p>}
       </div>
     </div>
   );
