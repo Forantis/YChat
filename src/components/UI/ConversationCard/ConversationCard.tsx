@@ -34,14 +34,19 @@ export default function ConversationCard({ conversation, setSelectedConversation
 
   return (
     <div className="conversation-card" onClick={() => setSelectedConversation(conversation_public_uuid)}>
-      <div className='conversation-card__content'>
-        <h3 className="conversation-card__content__title">{conversation_name}</h3>
-        <p className="conversation-card__content__last-message">{lastMessageText}</p>
+      <div className='conversation-card__avatar' >
+        <img src="/images/1.jpeg" alt="avatar" style={{ width: '60px', height: '60px' }} />
       </div>
-      <div className='conversation-card__infos'>
-      <p className="conversation-card__infos__last-update">{shownDateOrTime}</p>
-      {readStatus === 'read' ? <p className="conversation-card__infos__read-status">Readed</p> 
-      : <p className="conversation-card__infos__read-status"> Unreaded</p>}
+      <div className='conversation-card__summary'>
+        <div className='conversation-card__summary__content'>
+          <h3 className="conversation-card__summary__content__title">{conversation_name}</h3>
+          <p className="conversation-card__summary__content__last-message">{lastMessageText}</p>
+        </div>
+        <div className='conversation-card__summary__infos'>
+        <p className="conversation-card__summary__infos__last-update">{shownDateOrTime}</p>
+        {readStatus === 'read' ? <p className="conversation-card__infos__read-status">Readed</p> 
+        : <p className="conversation-card__summary__infos__read-status"> Unreaded</p>}
+        </div>
       </div>
     </div>
   );
