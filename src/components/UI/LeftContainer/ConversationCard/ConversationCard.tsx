@@ -1,6 +1,6 @@
 import './styles.scss'
 import { useQuery } from 'convex/react';
-import { api } from '../../../../convex/_generated/api';
+import { api } from '../../../../../convex/_generated/api';
 
 interface Conversation {
   conversation_name: string;

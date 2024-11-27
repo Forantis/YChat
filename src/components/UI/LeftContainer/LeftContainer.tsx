@@ -1,4 +1,4 @@
-import ConversationsList from "../ConversationsList/ConversationsList";
+import ConversationsList from "./ConversationsList/ConversationsList";
 import './styles.scss';
 
 export default function LeftContainer({ conversations, selectedConversation, setSelectedConversation} : { conversationsByUserId: any, selectedConversation: number, setSelectedConversation: (conversation: number) => void }) {
