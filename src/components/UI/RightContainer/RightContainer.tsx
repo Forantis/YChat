@@ -11,13 +11,14 @@ interface Message {
 interface RightContainerProps {
   messages: Message[];
   user_id: string;
+  selectedConversation: number;
 }
 
-export default function RightContainer({ messages, user_id }: RightContainerProps) {
+export default function RightContainer({ messages, user_id, selectedConversation }: RightContainerProps) {
   return (
     <div className="right-container"> 
       <MessagesList messages={messages} user_id={user_id} />
-      <MessageToolbar />
+      <MessageToolbar selectedConversation={selectedConversation} user_id={user_id}/>
     </div>
   )
   
