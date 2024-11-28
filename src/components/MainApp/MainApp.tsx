@@ -37,7 +37,7 @@ export default function MainApp(){
      conversations={conversationsByUserId}
      selectedConversation={selectedConversation} 
      setSelectedConversation={setSelectedConversation} />
-      <RightContainer messages={messagesByConversationId} user_id={user_id} />
+      <RightContainer messages={messagesByConversationId} user_id={user_id} selectedConversation={selectedConversation} />
     </div>
   );
 }
