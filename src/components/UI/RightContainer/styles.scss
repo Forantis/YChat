@@ -1,0 +1,14 @@
+.right-container{
+  display: flex;
+  flex-direction:column-reverse;
+  height: 100vh;
+  width: calc(100vw - 360px);
+  overflow-y: auto;
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #FAFAFA;
+
+}
