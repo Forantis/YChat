@@ -54,6 +54,7 @@ export const send = mutation({
       body: args.body,
       read_status: "unread",
       created_at: new Date().toISOString(),
+      format: "text",
     });
 
     // Update conversation's last_update
@@ -72,5 +73,24 @@ export const send = mutation({
       });
 
     return messageId;
+  },
+});
+
+// In order to send an image
+export const generateUploadUrl = mutation(async (ctx) => {
+  return await ctx.storage.generateUploadUrl();
+});
+
+export const sendImage = mutation({
+  args: { storageId: v.id("_storage"), sender_id: v.number(), conversation_id: v.number(),},
+  handler: async (ctx, args) => {
+    await ctx.db.insert("messages", {
+      body: args.storageId,
+      sender_id: args.sender_id,
+      format: "image",
+      read_status: "unread",
+      created_at: new Date().toISOString(),
+      conversation_public_uuid: args.conversation_id,
+    });
   },
 });
