@@ -1,5 +1,6 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
+import { Id } from "./_generated/dataModel";
 
 
 export const get = query({
@@ -23,10 +24,22 @@ export const getBySenderId =query({
 export const getByConversationId = query({
   args: { conversation_id: v.number() },
   handler: async (ctx, args) => {
-    return await ctx.db.query("messages")
+    const messages = await ctx.db.query("messages")
     .filter((q) => q.eq(q.field("conversation_public_uuid"), args.conversation_id))
     .order("desc")
     .collect();
+    return Promise.all(
+      messages.map(async (message) => {
+      const _storage = message.body as Id<"_storage">;
+      return {
+        ...message,
+        // If the message is an "image" its `body` is an `Id<"_storage">` to act as a url
+        ...(message.format === "image"
+        ? { url: await ctx.storage.getUrl(_storage) }
+        : {}),
+      };
+      }),
+    );
   },
 });
 
