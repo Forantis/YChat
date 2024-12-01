@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useQuery, useMutation } from "convex/react";
-import MessagesList from "../UI/MessagesList/MessagesList";
 import LeftContainer from "../UI/LeftContainer/LeftContainer";
 import RightContainer from "../UI/RightContainer/RightContainer";
 
