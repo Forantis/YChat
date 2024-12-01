@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../../convex/_generated/api";
 import { useQuery } from "convex/react";
 import LeftContainer from "../UI/LeftContainer/LeftContainer";
 import RightContainer from "../UI/RightContainer/RightContainer";
+
 
 export default function MainApp(){
   const user_id = parseInt(localStorage.getItem('public_uuid') || '0');

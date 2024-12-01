@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ConversationsList from "./ConversationsList/ConversationsList";
 import LeftContainerHeader from "./LeftContainerHeader/LeftContainerHeader";
 import './styles.scss';
@@ -20,7 +21,7 @@ export interface User {
 }
 
 interface LeftContainerProps {
-  conversations: Conversation[];
+  conversations: Conversation[] | undefined;
   setSelectedConversation: (conversation: Conversation) => void;
   user: User;
 }

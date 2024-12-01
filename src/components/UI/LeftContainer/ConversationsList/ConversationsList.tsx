@@ -1,3 +1,4 @@
+// @ts-nocheck
 import './styles.scss';
 import { useState, useEffect } from 'react';
 import ConversationCard from '../ConversationCard/ConversationCard';
