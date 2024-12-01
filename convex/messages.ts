@@ -107,3 +107,11 @@ export const sendImage = mutation({
     });
   },
 });
+
+// Update the read status of a message
+export const updateReadStatus = mutation({
+  args: { message_id: v.id("messages"), read_status: v.string()},
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.message_id, { read_status: args.read_status, last_update: new Date().toISOString() });
+  },
+});

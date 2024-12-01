@@ -1,5 +1,6 @@
 import './styles.scss'
-import { useQuery } from 'convex/react';
+import { useState, useEffect } from 'react';
+import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../../../convex/_generated/api';
 
 interface Conversation {
@@ -7,20 +8,37 @@ interface Conversation {
   conversation_public_uuid: string;
 }
 
-export default function ConversationCard({ conversation, setSelectedConversation }: { conversation: Conversation, setSelectedConversation: (conversation: Conversation) => void }) {
-  const { conversation_name, conversation_public_uuid} = conversation;
-  const lastMessage = useQuery(api.messages.getLastMessageByConversationId, { conversation_id: conversation_public_uuid });
+export default function ConversationCard({ conversation, setSelectedConversation, user }: { conversation: Conversation, setSelectedConversation: (conversation: Conversation) => void }) {
+  const { conversation_name, conversation_public_uuid } = conversation;
+  const updateReadStatusMutation = useMutation(api.messages.updateReadStatus);
+  const [lastMessage, setLastMessage] = useState([]);
+  
+  const lastMessageQuery = useQuery(api.messages.getLastMessageByConversationId, { conversation_id: conversation_public_uuid });
+
+  useEffect(() => {
+    if (lastMessageQuery) {
+      setLastMessage(lastMessageQuery);
+    }
+  }, [lastMessageQuery]);
   
   // Show the time of the last message in the conversation card and the last message
   let shownDateOrTime;
   let lastMessageText;
   let readStatus;
-
-  if(lastMessage){
+  let sender;
+  let lastUpdateDate;
+  
+  if(lastMessage.length > 0) {
   lastMessageText = lastMessage[0].body;
   readStatus = lastMessage[0].read_status;
+  sender = lastMessage[0].sender_id;
+  
   const now = new Date();
-  const lastUpdateDate = new Date(lastMessage[0].created_at);
+  if(lastMessage[0].last_update) {
+    lastUpdateDate = new Date(lastMessage[0].last_update);
+  } else {
+    lastUpdateDate = new Date(lastMessage[0].created_at);
+  }
   const timeDifference = now.getTime() - lastUpdateDate.getTime();
   const oneDay = 24 * 60 * 60 * 1000;
   if (timeDifference < oneDay) {
@@ -32,8 +50,16 @@ export default function ConversationCard({ conversation, setSelectedConversation
   }
 }
 
+  const updateReadStatus = async () => {
+    await updateReadStatusMutation({ message_id: lastMessage[0]._id, read_status: 'read' });
+    await api.messages.updateReadStatus({ messageId: lastMessage[0]._id, readStatus: 'read' });
+  }
+
   return (
-    <div className="conversation-card" onClick={() => setSelectedConversation(conversation_public_uuid)}>
+    <div className="conversation-card" onClick={() => {
+      setSelectedConversation(conversation_public_uuid);
+      updateReadStatus();
+      }}>
       <div className='conversation-card__avatar' >
         <img src="/images/1.jpeg" alt="avatar" style={{ width: '60px', height: '60px' }} />
       </div>
@@ -44,8 +70,8 @@ export default function ConversationCard({ conversation, setSelectedConversation
         </div>
         <div className='conversation-card__summary__infos'>
         <p className="conversation-card__summary__infos__last-update">{shownDateOrTime}</p>
-        {readStatus === 'read' ? <p className="conversation-card__infos__read-status">Readed</p> 
-        : <p className="conversation-card__summary__infos__read-status"> Unreaded</p>}
+        {lastMessage.length > 0 ? <p className="conversation-card__infos__read-status">{readStatus}ed</p> 
+        : <p className="conversation-card__summary__infos__read-status"></p>}
         </div>
       </div>
     </div>

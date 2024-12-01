@@ -19,6 +19,7 @@ export default defineSchema({
         conversation_public_uuid: v.number(), //To whom the message is sent
         read_status: v.string(),
         created_at: v.string(),
+        last_update: v.optional(v.string()),
         format: v.string(),
     }),
     conversations: defineTable({

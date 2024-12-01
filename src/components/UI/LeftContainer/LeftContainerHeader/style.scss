@@ -1,0 +1,66 @@
+.left-container-header{
+
+  &__hello{
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    color: #000;
+  }
+
+  &__id{
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #000;
+  }
+
+  &__new-conversation-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    left: 360px;
+    top: 100px;
+    background-color: #D7F8F4;
+    z-index: 5;
+    padding: 15px 0;
+
+    & input{
+      width: 80%;
+      padding: 10px;
+      margin: 0;
+      border: none;
+      border-bottom: 1px solid #000;
+      outline: none;
+      background-color: #f8f9fa;
+      color: #000;
+    }
+
+    & button{
+      width: 80%;
+      padding: 10px;
+      margin: 0;
+      border: none;
+      background-color: #f8f9fa;
+      color: #000;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+}
+
+#new-conversation-form-error{
+  color: red;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}

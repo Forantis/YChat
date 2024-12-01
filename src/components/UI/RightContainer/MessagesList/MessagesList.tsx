@@ -17,19 +17,8 @@ interface Message {
 }
 
 export default function MessagesList({ messages, user_id }: MessagesListProps) {
-  const [isLoading, setIsLoading] = useState(true);
   const [isImageClicked, setIsImageClicked] = useState(false);
   const [urlImageClicked, setUrlImageClicked] = useState("");
-
-  useEffect(() => {
-    if (messages && messages.length > 0) {
-      setIsLoading(false);
-    }
-  }, [messages]);
-
-  if (isLoading) {
-    return <div><img src="/images/logo.png" alt="YChat logo" /></div>;
-  }
 
   return (
     <div className="messages-list">

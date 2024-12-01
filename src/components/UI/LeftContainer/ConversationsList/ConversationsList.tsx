@@ -10,10 +10,10 @@ interface Conversation {
 
 interface ConversationsListProps {
   conversations: Conversation[];
-  setSelectedConversation: (conversation: Conversation) => void;
+  setSelectedConversation: (conversation: Conversation) => void; 
 }
 
-export default function ConversationsList({ conversations, setSelectedConversation }: ConversationsListProps) {
+export default function ConversationsList({ conversations, setSelectedConversation, user }: ConversationsListProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function ConversationsList({ conversations, setSelectedConversati
   return (
     <div className="conversations-list">
       {conversations.map((conversation: Conversation) => (
-        <ConversationCard key={conversation._id} conversation={conversation} setSelectedConversation={setSelectedConversation}/>
+        <ConversationCard key={conversation._id} conversation={conversation} setSelectedConversation={setSelectedConversation} user={user}/>
       ))}
     </div>
   );
