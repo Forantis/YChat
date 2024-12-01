@@ -80,7 +80,9 @@ export default function LeftContainerHeader({ user }: LeftContainerHeaderProps) 
                       }}>Remove last person</button>
                     }
 
-                    <button onClick={handleNewConversation}>Create</button>
+                    <button onClick={() => {
+                      handleNewConversation();
+                      setShowNewConversation(false)}}>Create</button>
                     {newConversationError ? <div id='new-conversation-form-error'>{newConversationError}</div> : null}
                 </div> : null}
             <button className='left-container-header__disconnect' onClick={handleDisconnect}>Disconnect</button>
