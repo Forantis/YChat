@@ -21,7 +21,7 @@ export default function ConversationCard({ conversation, setSelectedConversation
     }
   }, [lastMessageQuery]);
   
-  // Show the time of the last message in the conversation card and the last message
+  // The follow is to show the time of the last message in the conversation card and the last message
   let shownDateOrTime;
   let lastMessageText;
   let readStatus;
@@ -51,8 +51,11 @@ export default function ConversationCard({ conversation, setSelectedConversation
 }
 
   const updateReadStatus = async () => {
+    console.log(user)
+    if (lastMessage.length === 0 || lastMessage[0].read_status === 'read' || lastMessage[0].sender_id === user[0].public_uuid) {
+      return;
+    }
     await updateReadStatusMutation({ message_id: lastMessage[0]._id, read_status: 'read' });
-    await api.messages.updateReadStatus({ messageId: lastMessage[0]._id, readStatus: 'read' });
   }
 
   return (

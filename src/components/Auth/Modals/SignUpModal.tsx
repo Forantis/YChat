@@ -2,14 +2,8 @@ import React, { useState } from 'react';
 import Modal, { ModalHeader, ModalBody, ModalFooter } from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 
-const SignUpModal: React.FC = () => {
+const SignUpModal: React.FC = ({ setEmail, setPassword, setName, setSurname, handleRegister }: any) => {
     const [show, setShow] = useState(false);
-
-    const handleLogin = () => {
-        // Logic for handling login
-        console.log("Création de compte...");
-        setShow(false);
-    };
 
     return (
         <>
@@ -21,17 +15,25 @@ const SignUpModal: React.FC = () => {
                 <ModalBody>
                     <form>
                         <div>
-                            <label htmlFor="username">Email :</label>
-                            <input type="email" id="emailSignUp" name="email" required />
+                            <label htmlFor="username">Name :</label>
+                            <input type="text" id="nameSignUp" name="name" required onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div>
-                            <label htmlFor="password">Mot de passe :</label>
-                            <input type="password" id="passwordSignUp" name="password" required />
+                            <label htmlFor="username">Surname :</label>
+                            <input type="text" id="surnameSignUp" name="surname" required onChange={(e) => setSurname(e.target.value)} />
+                        </div>
+                        <div>
+                            <label htmlFor="username">Email :</label>
+                            <input type="email" id="emailSignUp" name="email" required onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password :</label>
+                            <input type="password" id="passwordSignUp" name="password" required onChange={(e) => setPassword(e.target.value)} />
                         </div>
                     </form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={handleLogin}>S'inscrire</Button>
+                    <Button onClick={() => handleRegister()}>S'inscrire</Button>
                     <Button onClick={() => setShow(false)}>Annuler</Button>
                 </ModalFooter>
             </Modal>
