@@ -41,6 +41,20 @@
       border-color: #007bff;
     }
   }
+
+  &__image-form{
+    position: absolute;
+    bottom: 100px;
+    background-color: #D7F8F4;
+    color: #000;
+    height: 50px;
+    width: 360px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
 }
 
 .icon{

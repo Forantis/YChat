@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import MessageBubble from "../MessageBubble/MessageBubble";
 import ImageMessageBubble from "../ImageMessageBubble/ImageMessageBubble";
+import ImageModal from "../ImageModal/ImageModal";
 import "./styles.scss"
 
 interface MessagesListProps {
   messages: Message[];
-  user_id: string;
+  user_id: number;
 }
 
 interface Message {
@@ -17,6 +18,8 @@ interface Message {
 
 export default function MessagesList({ messages, user_id }: MessagesListProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isImageClicked, setIsImageClicked] = useState(false);
+  const [urlImageClicked, setUrlImageClicked] = useState("");
 
   useEffect(() => {
     if (messages && messages.length > 0) {
@@ -28,15 +31,14 @@ export default function MessagesList({ messages, user_id }: MessagesListProps) {
     return <div><img src="/images/logo.png" alt="YChat logo" /></div>;
   }
 
-  console.log(messages);
-
   return (
     <div className="messages-list">
       {messages && messages.map((message: Message) => (
         message.format === "image" ?
-          <ImageMessageBubble key={message._id} message={message} user_id={user_id} /> :
-          <MessageBubble key={message._id} message={message} user_id={user_id} />
+          <ImageMessageBubble key={message._id} message={message} user_id={user_id} setUrlImageClicked={setUrlImageClicked} setIsImageClicked={setIsImageClicked} /> :
+          <MessageBubble key={message._id} message={message} user_id={user_id} /> 
       ))}
+      <ImageModal isImageClicked={isImageClicked} urlImageClicked={urlImageClicked} setIsImageClicked={setIsImageClicked} />
     </div>
   );
 }
