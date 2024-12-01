@@ -11,7 +11,16 @@ interface Conversation {
 export default function ConversationCard({ conversation, setSelectedConversation, user }: { conversation: Conversation, setSelectedConversation: (conversation: Conversation) => void }) {
   const { conversation_name, conversation_public_uuid } = conversation;
   const updateReadStatusMutation = useMutation(api.messages.updateReadStatus);
-  const [lastMessage, setLastMessage] = useState([]);
+  interface Message {
+    body: string;
+    read_status: string;
+    sender_id: string;
+    last_update?: string;
+    created_at: string;
+    _id: string;
+  }
+  
+  const [lastMessage, setLastMessage] = useState<Message[]>([]);
   
   const lastMessageQuery = useQuery(api.messages.getLastMessageByConversationId, { conversation_id: conversation_public_uuid });
 
@@ -51,7 +60,6 @@ export default function ConversationCard({ conversation, setSelectedConversation
 }
 
   const updateReadStatus = async () => {
-    console.log(user)
     if (lastMessage.length === 0 || lastMessage[0].read_status === 'read' || lastMessage[0].sender_id === user[0].public_uuid) {
       return;
     }

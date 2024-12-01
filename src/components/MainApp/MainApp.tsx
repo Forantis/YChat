@@ -6,7 +6,7 @@ import LeftContainer from "../UI/LeftContainer/LeftContainer";
 import RightContainer from "../UI/RightContainer/RightContainer";
 
 export default function MainApp(){
-  const user_id = parseInt(localStorage.getItem('public_uuid'));
+  const user_id = parseInt(localStorage.getItem('public_uuid') || '0');
   const [selectedConversation, setSelectedConversation] = useState(0);
   const navigate = useNavigate();
 

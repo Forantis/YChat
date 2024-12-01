@@ -2,7 +2,19 @@ import React, { useState } from 'react';
 import Modal, { ModalHeader, ModalBody, ModalFooter } from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 
-const SignUpModal: React.FC = ({ setEmail, setPassword, setName, setSurname, handleRegister }: any) => {
+interface SignUpModalProps {
+    setEmail: React.Dispatch<React.SetStateAction<string>>;
+    setPassword: React.Dispatch<React.SetStateAction<string>>;
+    setName: React.Dispatch<React.SetStateAction<string>>;
+    setSurname: React.Dispatch<React.SetStateAction<string>>;
+    handleRegister: () => Promise<void>;
+
+}
+
+
+
+const SignUpModal: React.FC<SignUpModalProps> = ({ setEmail, setPassword, setName, setSurname, handleRegister }) => {
+
     const [show, setShow] = useState(false);
 
     return (
