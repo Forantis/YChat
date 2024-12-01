@@ -1,4 +1,5 @@
 import './styles.scss'
+import { useState, useEffect } from 'react';
 import { useQuery } from 'convex/react';
 import { api } from '../../../../../convex/_generated/api';
 
@@ -9,14 +10,22 @@ interface Conversation {
 
 export default function ConversationCard({ conversation, setSelectedConversation }: { conversation: Conversation, setSelectedConversation: (conversation: Conversation) => void }) {
   const { conversation_name, conversation_public_uuid} = conversation;
-  const lastMessage = useQuery(api.messages.getLastMessageByConversationId, { conversation_id: conversation_public_uuid });
+  const [lastMessage, setLastMessage] = useState([]);
+  
+  const lastMessageQuery = useQuery(api.messages.getLastMessageByConversationId, { conversation_id: conversation_public_uuid });
+
+  useEffect(() => {
+    if (lastMessageQuery) {
+      setLastMessage(lastMessageQuery);
+    }
+  }, [lastMessageQuery]);
   
   // Show the time of the last message in the conversation card and the last message
   let shownDateOrTime;
   let lastMessageText;
   let readStatus;
-
-  if(lastMessage){
+  
+  if(lastMessage.length > 0) {
   lastMessageText = lastMessage[0].body;
   readStatus = lastMessage[0].read_status;
   const now = new Date();
@@ -44,8 +53,8 @@ export default function ConversationCard({ conversation, setSelectedConversation
         </div>
         <div className='conversation-card__summary__infos'>
         <p className="conversation-card__summary__infos__last-update">{shownDateOrTime}</p>
-        {readStatus === 'read' ? <p className="conversation-card__infos__read-status">Readed</p> 
-        : <p className="conversation-card__summary__infos__read-status"> Unreaded</p>}
+        {lastMessage.length > 0 ? <p className="conversation-card__infos__read-status">{readStatus}ed</p> 
+        : <p className="conversation-card__summary__infos__read-status"></p>}
         </div>
       </div>
     </div>

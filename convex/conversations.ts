@@ -59,3 +59,51 @@ export const getConversationsNameByUserId = query({
     return conversations;
   },
 });
+
+export const createConversation = mutation({
+  args: {
+    conversation_name: v.string(),
+    conversation_public_uuid: v.number(),
+    last_update: v.string(),
+    current_user_id: v.number(),
+    invited_user_id:v.array(v.number())
+  },
+  handler: async (ctx, args) => {
+    const { conversation_public_uuid, last_update, current_user_id, invited_user_id } = args;
+    let conversation_name = args.conversation_name;
+
+    if(invited_user_id.length === 1){
+      // get user_id name
+      const user = await ctx.db.query("users")
+      .filter((q) => q.eq(q.field("public_uuid"), invited_user_id[0]))
+      .collect();
+      const name = user[0].name; 
+      const surname = user[0].surname;
+      conversation_name = `${name} ${surname}`;
+    }
+
+
+    // Insert the new conversation
+    await ctx.db.insert("conversations", {
+      conversation_name,
+      conversation_public_uuid,
+      last_update,
+    });
+
+    // Insert the current user into the conversation
+    await ctx.db.insert("usersInConversations", {
+      user_id : current_user_id,
+      conversation_id: conversation_public_uuid,
+    });
+
+    // Insert the invited user into the conversation
+    for (const user_id of invited_user_id) {
+      await ctx.db.insert("usersInConversations", {
+        user_id,
+        conversation_id: conversation_public_uuid,
+      });
+    }
+
+    return { success: true };
+  },
+});

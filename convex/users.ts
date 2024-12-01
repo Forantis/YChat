@@ -28,3 +28,13 @@ export const register = mutation({
         });
     },
 });
+
+// Get user by Id
+export const getUserById = query({
+    args: {user_id: v.number()},
+    handler: async (ctx, args) => {
+        return await ctx.db.query("users")
+        .filter((q) => q.eq(q.field("public_uuid"), args.user_id))
+        .collect();
+    },
+});

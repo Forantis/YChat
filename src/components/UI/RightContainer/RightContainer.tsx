@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import MessagesList from "./MessagesList/MessagesList"
 import MessageToolbar from "./MessageToolbar/MessageToolbar";
 import './styles.scss'
@@ -15,6 +16,18 @@ interface RightContainerProps {
 }
 
 export default function RightContainer({ messages, user_id, selectedConversation }: RightContainerProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (messages && selectedConversation !== 0) {
+      setIsLoading(false);
+    }
+  }, [messages]);
+
+  if (isLoading) {
+    return <div className="right-container--loading"><img src="/images/logo.png" alt="YChat logo" /></div>;
+  }
+
   return (
     <div className="right-container"> 
       <MessagesList messages={messages} user_id={user_id} />

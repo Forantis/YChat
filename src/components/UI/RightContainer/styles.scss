@@ -11,4 +11,12 @@
   top: 0;
   background-color: #FAFAFA;
 
+  &--loading{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+  }
+
 }
