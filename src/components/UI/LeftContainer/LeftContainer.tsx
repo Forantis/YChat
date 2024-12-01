@@ -30,7 +30,8 @@ export default function LeftContainer({ conversations, setSelectedConversation, 
     {isLoaded ? <LeftContainerHeader user={user} /> : null}
     <ConversationsList 
      conversations={conversations}
-     setSelectedConversation={setSelectedConversation} />
+     setSelectedConversation={setSelectedConversation} 
+     user={user}/>
     </div>
   );
 }

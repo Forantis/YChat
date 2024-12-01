@@ -6,7 +6,7 @@ import LeftContainer from "../UI/LeftContainer/LeftContainer";
 import RightContainer from "../UI/RightContainer/RightContainer";
 
 export default function MainApp(){
-  const [user_id, setUser_id] = useState(2);
+  const [user_id, setUser_id] = useState(1);
   const [selectedConversation, setSelectedConversation] = useState(0);
 
   const messagesByConversationId = useQuery(api.messages.getByConversationId, { conversation_id: selectedConversation });

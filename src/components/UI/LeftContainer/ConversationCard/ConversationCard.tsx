@@ -1,6 +1,6 @@
 import './styles.scss'
 import { useState, useEffect } from 'react';
-import { useQuery } from 'convex/react';
+import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../../../convex/_generated/api';
 
 interface Conversation {
@@ -8,8 +8,9 @@ interface Conversation {
   conversation_public_uuid: string;
 }
 
-export default function ConversationCard({ conversation, setSelectedConversation }: { conversation: Conversation, setSelectedConversation: (conversation: Conversation) => void }) {
-  const { conversation_name, conversation_public_uuid} = conversation;
+export default function ConversationCard({ conversation, setSelectedConversation, user }: { conversation: Conversation, setSelectedConversation: (conversation: Conversation) => void }) {
+  const { conversation_name, conversation_public_uuid } = conversation;
+  const updateReadStatusMutation = useMutation(api.messages.updateReadStatus);
   const [lastMessage, setLastMessage] = useState([]);
   
   const lastMessageQuery = useQuery(api.messages.getLastMessageByConversationId, { conversation_id: conversation_public_uuid });
@@ -24,12 +25,20 @@ export default function ConversationCard({ conversation, setSelectedConversation
   let shownDateOrTime;
   let lastMessageText;
   let readStatus;
+  let sender;
+  let lastUpdateDate;
   
   if(lastMessage.length > 0) {
   lastMessageText = lastMessage[0].body;
   readStatus = lastMessage[0].read_status;
+  sender = lastMessage[0].sender_id;
+  
   const now = new Date();
-  const lastUpdateDate = new Date(lastMessage[0].created_at);
+  if(lastMessage[0].last_update) {
+    lastUpdateDate = new Date(lastMessage[0].last_update);
+  } else {
+    lastUpdateDate = new Date(lastMessage[0].created_at);
+  }
   const timeDifference = now.getTime() - lastUpdateDate.getTime();
   const oneDay = 24 * 60 * 60 * 1000;
   if (timeDifference < oneDay) {
@@ -41,8 +50,16 @@ export default function ConversationCard({ conversation, setSelectedConversation
   }
 }
 
+  const updateReadStatus = async () => {
+    await updateReadStatusMutation({ message_id: lastMessage[0]._id, read_status: 'read' });
+    await api.messages.updateReadStatus({ messageId: lastMessage[0]._id, readStatus: 'read' });
+  }
+
   return (
-    <div className="conversation-card" onClick={() => setSelectedConversation(conversation_public_uuid)}>
+    <div className="conversation-card" onClick={() => {
+      setSelectedConversation(conversation_public_uuid);
+      updateReadStatus();
+      }}>
       <div className='conversation-card__avatar' >
         <img src="/images/1.jpeg" alt="avatar" style={{ width: '60px', height: '60px' }} />
       </div>
