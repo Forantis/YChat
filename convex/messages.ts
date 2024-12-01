@@ -1,5 +1,6 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
+import { Id } from "./_generated/dataModel";
 
 
 export const get = query({
@@ -23,10 +24,22 @@ export const getBySenderId =query({
 export const getByConversationId = query({
   args: { conversation_id: v.number() },
   handler: async (ctx, args) => {
-    return await ctx.db.query("messages")
+    const messages = await ctx.db.query("messages")
     .filter((q) => q.eq(q.field("conversation_public_uuid"), args.conversation_id))
     .order("desc")
     .collect();
+    return Promise.all(
+      messages.map(async (message) => {
+      const _storage = message.body as Id<"_storage">;
+      return {
+        ...message,
+        // If the message is an "image" its `body` is an `Id<"_storage">` to act as a url
+        ...(message.format === "image"
+        ? { url: await ctx.storage.getUrl(_storage) }
+        : {}),
+      };
+      }),
+    );
   },
 });
 
@@ -54,6 +67,7 @@ export const send = mutation({
       body: args.body,
       read_status: "unread",
       created_at: new Date().toISOString(),
+      format: "text",
     });
 
     // Update conversation's last_update
@@ -72,5 +86,24 @@ export const send = mutation({
       });
 
     return messageId;
+  },
+});
+
+// In order to send an image
+export const generateUploadUrl = mutation(async (ctx) => {
+  return await ctx.storage.generateUploadUrl();
+});
+
+export const sendImage = mutation({
+  args: { storageId: v.id("_storage"), sender_id: v.number(), conversation_id: v.number(),},
+  handler: async (ctx, args) => {
+    await ctx.db.insert("messages", {
+      body: args.storageId,
+      sender_id: args.sender_id,
+      format: "image",
+      read_status: "unread",
+      created_at: new Date().toISOString(),
+      conversation_public_uuid: args.conversation_id,
+    });
   },
 });

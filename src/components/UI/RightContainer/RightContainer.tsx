@@ -10,7 +10,7 @@ interface Message {
 
 interface RightContainerProps {
   messages: Message[];
-  user_id: string;
+  user_id: number;
   selectedConversation: number;
 }
 

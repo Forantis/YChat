@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 import MessageBubble from "../MessageBubble/MessageBubble";
+import ImageMessageBubble from "../ImageMessageBubble/ImageMessageBubble";
+import ImageModal from "../ImageModal/ImageModal";
 import "./styles.scss"
 
 interface MessagesListProps {
   messages: Message[];
-  user_id: string;
+  user_id: number;
 }
 
 interface Message {
   _id: string;
   text: string;
   sender_id: string;
+  format: string;
 }
 
 export default function MessagesList({ messages, user_id }: MessagesListProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isImageClicked, setIsImageClicked] = useState(false);
+  const [urlImageClicked, setUrlImageClicked] = useState("");
 
   useEffect(() => {
     if (messages && messages.length > 0) {
@@ -29,8 +34,11 @@ export default function MessagesList({ messages, user_id }: MessagesListProps) {
   return (
     <div className="messages-list">
       {messages && messages.map((message: Message) => (
-        <MessageBubble key={message._id} message={message} user_id={user_id} />
+        message.format === "image" ?
+          <ImageMessageBubble key={message._id} message={message} user_id={user_id} setUrlImageClicked={setUrlImageClicked} setIsImageClicked={setIsImageClicked} /> :
+          <MessageBubble key={message._id} message={message} user_id={user_id} /> 
       ))}
+      <ImageModal isImageClicked={isImageClicked} urlImageClicked={urlImageClicked} setIsImageClicked={setIsImageClicked} />
     </div>
   );
 }
