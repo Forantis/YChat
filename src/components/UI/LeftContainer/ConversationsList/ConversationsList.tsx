@@ -1,11 +1,15 @@
 import './styles.scss';
 import { useState, useEffect } from 'react';
 import ConversationCard from '../ConversationCard/ConversationCard';
+import { Conversation } from '../LeftContainer';
+import { User } from '../LeftContainer';
 
-interface Conversation {
-  _id: string;
-  conversation_name: string;
-  conversation_public_uuid: string;
+interface ConversationsListProps {
+
+  conversations: Conversation[];
+  setSelectedConversation: (conversation: Conversation) => void; 
+  user: User;
+
 }
 
 interface ConversationsListProps {
