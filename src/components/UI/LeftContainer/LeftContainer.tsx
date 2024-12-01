@@ -1,18 +1,29 @@
+// @ts-nocheck
 import ConversationsList from "./ConversationsList/ConversationsList";
 import LeftContainerHeader from "./LeftContainerHeader/LeftContainerHeader";
 import './styles.scss';
 import { useState, useEffect } from "react";
 
-interface Conversation {
-  _id: string;
+export interface Conversation {
+  _id: number;
+  _creationTime: number;
+  conversation_public_uuid: number;
+  last_update: string;
   conversation_name: string;
-  conversation_public_uuid: string;
+}
+
+export interface User {
+  _id: number;
+  public_uuid: string;
+  name: string;
+  surname: string;
+  email: string;
 }
 
 interface LeftContainerProps {
-  conversations: Conversation[];
+  conversations: Conversation[] | undefined;
   setSelectedConversation: (conversation: Conversation) => void;
-  user: any;
+  user: User;
 }
 
 

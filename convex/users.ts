@@ -29,6 +29,17 @@ export const register = mutation({
     },
 });
 
+// Use tokenIdentifier to verify user connection
+export const verifyToken = query({
+    args: {tokenIdentifier: v.string()},
+    handler: async (ctx, args) => {
+        const users = await ctx.db.query("users")
+            .filter((q) => q.eq(q.field("tokenIdentifier"), args.tokenIdentifier))
+            .collect();
+        return users.length > 0;
+    },
+});
+
 // Get user by Id
 export const getUserById = query({
     args: {user_id: v.number()},

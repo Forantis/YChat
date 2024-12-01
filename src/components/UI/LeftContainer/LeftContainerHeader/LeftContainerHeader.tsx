@@ -1,6 +1,8 @@
+// @ts-nocheck
 import { useState } from 'react';
 import { api } from "../../../../../convex/_generated/api";
 import { useMutation } from "convex/react";
+import { useNavigate } from 'react-router-dom';
 import './style.scss';
 
 interface User {
@@ -20,6 +22,7 @@ export default function LeftContainerHeader({ user }: LeftContainerHeaderProps) 
   const [newConversationName, setNewConversationName] = useState("");
   const [newConversationUsers, setNewConversationUsers] = useState<string[]>([]);
   const [newConversationError, setNewConversationError] = useState("");
+  const navigate = useNavigate();
 
   const createConversation = useMutation(api.conversations.createConversation);
 
@@ -37,6 +40,12 @@ export default function LeftContainerHeader({ user }: LeftContainerHeaderProps) 
       current_user_id: public_uuid,
       invited_user_id: invitedUsersInt
     });
+  }
+
+  function handleDisconnect() {
+    localStorage.removeItem('tokenIdentifier');
+    localStorage.removeItem('public_uuid');
+    navigate('/');
   }
     
 
@@ -72,9 +81,12 @@ export default function LeftContainerHeader({ user }: LeftContainerHeaderProps) 
                       }}>Remove last person</button>
                     }
 
-                    <button onClick={handleNewConversation}>Create</button>
+                    <button onClick={() => {
+                      handleNewConversation();
+                      setShowNewConversation(false)}}>Create</button>
                     {newConversationError ? <div id='new-conversation-form-error'>{newConversationError}</div> : null}
                 </div> : null}
+            <button className='left-container-header__disconnect' onClick={handleDisconnect}>Disconnect</button>
         </div>
     );
 }

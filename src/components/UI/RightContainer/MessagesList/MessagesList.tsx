@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MessageBubble from "../MessageBubble/MessageBubble";
 import ImageMessageBubble from "../ImageMessageBubble/ImageMessageBubble";
 import ImageModal from "../ImageModal/ImageModal";
@@ -11,9 +11,10 @@ interface MessagesListProps {
 
 interface Message {
   _id: string;
-  text: string;
-  sender_id: string;
+  body: string;
+  sender_id: number;
   format: string;
+  url: string;
 }
 
 export default function MessagesList({ messages, user_id }: MessagesListProps) {

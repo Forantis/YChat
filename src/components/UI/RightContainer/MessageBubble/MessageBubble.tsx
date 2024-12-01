@@ -1,6 +1,11 @@
 import './styles.scss'
 
-export default function MessageBubble({ message, user_id }: { message: Message }) {
+interface Message {
+  body: string;
+  sender_id: number;
+}
+
+export default function MessageBubble({ message, user_id }: { message: Message, user_id: number }) {
 
   return (
     <div className={`message-bubble ${user_id === message.sender_id ? 'message-bubble--sent' : 'message-bubble--received'}`}>

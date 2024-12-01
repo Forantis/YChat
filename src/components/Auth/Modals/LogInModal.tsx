@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import Modal, { ModalHeader, ModalBody, ModalFooter } from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 
-const LogInModal: React.FC = () => {
-    const [show, setShow] = useState(false);
+interface LogInModalProps {
+    setEmail: React.Dispatch<React.SetStateAction<string>>;
+    setPassword: React.Dispatch<React.SetStateAction<string>>;
+    handleLogin: () => Promise<void>;
+}
 
-    const handleLogin = () => {
-        // Logic for handling login
-        console.log("Logging in...");
-        setShow(false);
-    };
+const LogInModal: React.FC<LogInModalProps> = ({ setEmail, setPassword, handleLogin }) => {
+
+    const [show, setShow] = useState(false);
 
     return (
         <>
@@ -22,11 +23,11 @@ const LogInModal: React.FC = () => {
                     <form>
                         <div>
                             <label htmlFor="username">Email :</label>
-                            <input type="email" id="emailLogIn" name="email" required />
+                            <input type="email" id="emailLogIn" name="email" required onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div>
                             <label htmlFor="password">Mot de passe :</label>
-                            <input type="password" id="passwordLogIn" name="password" required />
+                            <input type="password" id="passwordLogIn" name="password" required onChange={(e) => setPassword(e.target.value)} />
                         </div>
                     </form>
                 </ModalBody>

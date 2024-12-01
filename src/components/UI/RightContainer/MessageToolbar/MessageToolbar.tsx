@@ -20,7 +20,7 @@ export default function MessageToolbar({ selectedConversation, user_id }: Messag
     const [messageBody, setMessageBody] = useState<string>('');
     const [wantToSendImage, setWantToSendImage] = useState<boolean>(false);
 
-    async function handleSendImage(event: FormEvent) {
+    async function handleSendImage(event: React.FormEvent) {
         event.preventDefault();
     
         // Step 1: Get a short-lived upload URL

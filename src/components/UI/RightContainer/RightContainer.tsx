@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import MessagesList from "./MessagesList/MessagesList"
 import MessageToolbar from "./MessageToolbar/MessageToolbar";

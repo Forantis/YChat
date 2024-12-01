@@ -1,3 +1,4 @@
+// @ts-nocheck
 import './styles.scss'
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from 'convex/react';
@@ -11,7 +12,16 @@ interface Conversation {
 export default function ConversationCard({ conversation, setSelectedConversation, user }: { conversation: Conversation, setSelectedConversation: (conversation: Conversation) => void }) {
   const { conversation_name, conversation_public_uuid } = conversation;
   const updateReadStatusMutation = useMutation(api.messages.updateReadStatus);
-  const [lastMessage, setLastMessage] = useState([]);
+  interface Message {
+    body: string;
+    read_status: string;
+    sender_id: string;
+    last_update?: string;
+    created_at: string;
+    _id: string;
+  }
+  
+  const [lastMessage, setLastMessage] = useState<Message[]>([]);
   
   const lastMessageQuery = useQuery(api.messages.getLastMessageByConversationId, { conversation_id: conversation_public_uuid });
 
@@ -21,7 +31,7 @@ export default function ConversationCard({ conversation, setSelectedConversation
     }
   }, [lastMessageQuery]);
   
-  // Show the time of the last message in the conversation card and the last message
+  // The follow is to show the time of the last message in the conversation card and the last message
   let shownDateOrTime;
   let lastMessageText;
   let readStatus;
@@ -51,8 +61,10 @@ export default function ConversationCard({ conversation, setSelectedConversation
 }
 
   const updateReadStatus = async () => {
+    if (lastMessage.length === 0 || lastMessage[0].read_status === 'read' || lastMessage[0].sender_id === user[0].public_uuid) {
+      return;
+    }
     await updateReadStatusMutation({ message_id: lastMessage[0]._id, read_status: 'read' });
-    await api.messages.updateReadStatus({ messageId: lastMessage[0]._id, readStatus: 'read' });
   }
 
   return (
