@@ -40,8 +40,7 @@ const LandingPage: React.FC = () => {
     async function handleLogin() {
         const users = await authentication({ email, password });
         if (users.length > 0) {
-            const tokenIdentifier = `${Math.floor(Math.random() * 1000000000)}`;
-            localStorage.setItem('tokenIdentifier', tokenIdentifier);
+            localStorage.setItem('tokenIdentifier', users[0].tokenIdentifier);
             localStorage.setItem('public_uuid', users[0].public_uuid.toString());
             navigate('/app');
         }
