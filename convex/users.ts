@@ -5,6 +5,7 @@ import { v } from "convex/values";
 export const authentication = mutation({
     args: {email: v.string(), password: v.string()},
     handler: async (ctx, args) => {
+        console.log("authentication");
         return await ctx.db.query("users")
         .filter((q) => q.eq(q.field("email"), args.email))
         .filter((q) => q.eq(q.field("password"), args.password))
