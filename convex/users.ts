@@ -17,6 +17,7 @@ export const authentication = mutation({
 export const register = mutation({
     args: {public_uuid: v.number(), email: v.string(), password: v.string(), name: v.string(), surname: v.string(), role: v.string(), tokenIdentifier: v.string(), created_at: v.string()},
     handler: async (ctx, args) => {
+        console.log("register");
         await ctx.db.insert("users", {
             public_uuid: args.public_uuid,
             email: args.email,
